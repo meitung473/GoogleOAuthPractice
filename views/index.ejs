@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include ("partials/header") %>
+  <title>Home</title>
+</head>
+
+<body>
+
+  <%- include ("partials/nav") %>
+  <div class="p-5 mb-4 bg-light rounded-3">
+    <div class="container-fluid py-5">
+      <h1 class="display-5 fw-bold"> Google登入與本地登入系統</h1>
+      <p class="col-md-8 fs-4">
+        使用 EJS、MongoDB、Mongoose、Passport.js、Authentication、Google OAuth
+      </p>
+      <a href="/profile" class="btn btn-primary btn-lg" type="button">
+        登入並發布貼文
+      </a>
+    </div>
+  </div>
+  <!-- posts -->
+  <div style="margin: 0 auto 2rem;" class="m-t-0 m">
+    <h2 class="text-center">所有文章</h2>
+    <%- include('./partials/AllPosts.ejs') %>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include ("partials/header") %>
+  <title>修改 Post</title>
+</head>
+
+<body>
+  <%- include ("partials/nav") %>
+  <main style="padding: 3rem">
+    <%- include ("partials/message") %>
+    <form action="/profile/post/<%= post._id%>?_method=PATCH" method="POST">
+      <div class="form-group">
+        <label for="exampleforTitle">標題：</label>
+        <input name="title" type="text" class="form-control" id="exampleforTitle" value="<%= post.title %>" />
+      </div>
+      <br />
+      <div class="form-group">
+        <label for="exampleforContent">內容：</label>
+        <textarea class="form-control" id="exampleforContent" aria-describedby="emailHelp" name="content"><%= post.content %></textarea>
+        <br />
+        <div class="d-flex align-items-center justify-content-end column-gap-2">
+          <a href="/profile" class="btn btn-secondary me-auto">取消</a>
+          <button type="submit" class="btn btn-primary">確認</button>
+          <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">刪除</a>
+        </div>
+    </form>
+    <!-- delete modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">確認操作</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">你確認要刪除此文章 ?</div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+            <form action="/profile/post/<%= post._id %>?_method=DELETE" method="POST">
+              <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">確認</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</body>
+
+</html>

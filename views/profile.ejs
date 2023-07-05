@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include ("partials/header") %>
+  <title><%= user.username %> 個人檔案頁面</title>
+</head>
+
+<body>
+  <%- include ("partials/nav") %>
+  <section class="container mt-4">
+    <div class="d-flex align-items-center column-gap-4">
+      <img src="<%= user.thumbnail %>" alt="個人圖片" class="border border-muted rounded-circle" />
+      <h1><%= user.username %></h1>
+    </div>
+    <ul class="mt-2">
+      <% if(user.googleID){%>
+      <li>Google的ID為 : <%= user.googleID %></li>
+      <%}%>
+        <% const options ={year: "numeric",month: "numeric",weekday: "long",day: "numeric"}%>
+
+      <li>創建帳號時間：<%= formatDate(user.createdAt,options) %></li>
+      <li>最近一次登入：<%= formatDate(user.updatedAt,options) %></li>
+    </ul>
+  </section>
+  <%- include('./partials/posts.ejs')%>
+
+</body>
+
+</html>
