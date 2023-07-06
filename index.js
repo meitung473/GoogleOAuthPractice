@@ -1,17 +1,14 @@
-const dotenv = require("dotenv");
-dotenv.config();
-const MongoStore = require("connect-mongo");
+const { sessionOpts } = require("./config/config");
+require("./config/passport");
+require("./db/connect");
+
 const express = require("express");
-// const cors = require("cors");
 const methodOverride = require("method-override");
 const app = express();
-require("./config/connect");
 
-const session = require("express-session");
 const passport = require("passport");
 const flash = require("connect-flash");
-
-require("./config/passport");
+const session = require("express-session");
 const AuthRouter = require("./routes/auth");
 const ProfileRouter = require("./routes/profile");
 
@@ -27,23 +24,10 @@ app.use(express.static(__dirname + "public"));
 app.set("view engine", "ejs");
 
 app.set("trust proxy", 1);
-app.use(
-    session({
-        secret: process.env.SESSION_SECRET,
-        resave: false,
-        saveUninitialized: false,
-        cookie: { secure: true },
-        store: MongoStore.create({
-            mongoUrl: process.env.MONOGODB_CONNECT_URL,
-            autoRemove: "interval",
-            autoRemoveInterval: 10, //minute remove
-        }),
-    })
-);
+app.use(session(sessionOpts));
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.use(cors());
 app.use(methodOverride("_method"));
 
 app.use(flash());
