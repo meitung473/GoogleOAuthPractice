@@ -1,7 +1,7 @@
 # Passport.js Google OAuth Login + Local SignUp  & Login Practice  
 
-這是一個只有 **後端** 的專案練習，沒有使用任何前端框架，部屬在 render.com 上。    
-實作 Passport.js + Passport Google OAuth 2.0 與本地註冊與登入。
+這是一個只有 **後端** 的專案練習，沒有使用任何前端框架，部屬在 [render.com](https://render.com/) 上。    
+實作 [Passport.js](https://www.passportjs.org/) + Passport Google OAuth 2.0 與本地註冊與登入。
 
 ## 畫面
 
