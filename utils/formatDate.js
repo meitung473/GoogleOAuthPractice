@@ -1,4 +1,11 @@
-// local time format
+function toLocaleStringSupportsLocales() {
+    return (
+        typeof Intl === "object" &&
+        !!Intl &&
+        typeof Intl.DateTimeFormat === "function"
+    );
+}
+
 const format = (
     date,
     options = {
@@ -11,6 +18,12 @@ const format = (
         // second: "numeric",
         hour12: false,
     }
-) => new Intl.DateTimeFormat(undefined, options).format(date);
+) => {
+    if (toLocaleStringSupportsLocales()) {
+        const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        options.timeZone = userTimezone;
+    }
+    return date.toLocaleString(undefined, options);
+};
 
 module.exports = format;
